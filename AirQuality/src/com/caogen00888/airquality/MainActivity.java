@@ -1,6 +1,10 @@
 package com.caogen00888.airquality;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
 
 import org.json.JSONException;
 import org.json.JSONTokener;
@@ -24,6 +28,11 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
     private static final String mStationNamesHttp = "http://www.pm25.in/api/querys/station_names.json";
     private static final String TOKEN_VALUE = "5j1znBVAsnSf5xQyNQyq";
     private static final String TOKEN_KEY = "token";
+
+    private static final String mNo2Http = "http://www.pm25.in/api/querys/pm10.json";
+    private static final String city = "\"北京\"";
+    private static final String station_code = "1005A";
+    private static final String aqi_ranking = "http://www.pm25.in/api/querys/so2.json";
     private TextView mMsg;
 
     @Override
@@ -52,6 +61,20 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+    
+    private void parseTimePoint() {
+        String timepoint = "2015-12-07T14:00:00Z";
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
+        try {
+            Date d = sdf.parse(timepoint);
+            System.out.println(d.getTime() + "\n");
+            System.out.println("" + System.currentTimeMillis());
+            Date nd = new Date(1);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -82,14 +105,14 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
                     String url = params[0];
                     HttpConnectHelper helper = new HttpConnectHelper(MainActivity.this);
                     try {
-                        return helper.getFakeData(url);
+                        return helper.getDataFromUrl(url);
                     } catch (IOException e) {
                         Log.e(TAG, "Error occured during get data from url:" + url);
                     }
                     return null;
                 }
                 
-            }.execute(mStationNamesHttp + "?" + TOKEN_KEY + "=" + TOKEN_VALUE);
+            }.execute(aqi_ranking + "?" + TOKEN_KEY + "=" + TOKEN_VALUE + "&city=" + city);
         }
     }
 }

@@ -45,6 +45,28 @@ time_point  数据发布的时间
 */
 public class AQDataType {
     public static class AQDataTypeDic {
+        public static String COLUMN_NAME_AQI = "Aqi";
+        public static String COLUMN_NAME_AREA = "area";
+        public static String COLUMN_NAME_POSITION_NAME = "position_name";
+        public static String COLUMN_NAME_STATION_CODE = "station_code";
+        public static String COLUMN_NAME_SO2 = "so2";
+        public static String COLUMN_NAME_SO2_24H = "so2_24h";
+        public static String COLUMN_NAME_NO2 = "no2";
+        public static String COLUMN_NAME_NO2_24H = "no2_24h";
+        public static String COLUMN_NAME_PM10 = "pm10";
+        public static String COLUMN_NAME_PM10_24H = "pm10_24h";
+        public static String COLUMN_NAME_CO = "co";
+        public static String COLUMN_NAME_CO_24H = "co_24h";
+        public static String COLUMN_NAME_O3 = "o3";
+        public static String COLUMN_NAME_O3_24H = "o3_24h";
+        public static String COLUMN_NAME_O3_8H = "o3_8h";
+        public static String COLUMN_NAME_O3_8H_24H = "o3_8h_24h";
+        public static String COLUMN_NAME_PM2_5 = "pm2_5";
+        public static String COLUMN_NAME_PM2_5_24H = "pm2_5_24h";
+        public static String COLUMN_NAME_PRIMARY_POLLUTANT = "primary_pollutant";
+        public static String COLUMN_NAME_QUALITY = "quality";
+        public static String COLUMN_NAME_TIME_POINT = "time_point";
+        private static final String[] parseKeys = new String[] {COLUMN_NAME_AQI,COLUMN_NAME_SO2,COLUMN_NAME_SO2_24H,COLUMN_NAME_NO2,COLUMN_NAME_NO2_24H,COLUMN_NAME_PM10,COLUMN_NAME_PM10_24H,COLUMN_NAME_CO,COLUMN_NAME_CO_24H,COLUMN_NAME_O3,COLUMN_NAME_O3_24H,COLUMN_NAME_O3_8H,COLUMN_NAME_O3_8H_24H,COLUMN_NAME_PM2_5,COLUMN_NAME_PM2_5_24H,COLUMN_NAME_PRIMARY_POLLUTANT,COLUMN_NAME_QUALITY,COLUMN_NAME_TIME_POINT};
         Map<String, Class<?>> dics = new HashMap<String, Class<?>> ();
         public AQDataTypeDic() {
             dics.clear();

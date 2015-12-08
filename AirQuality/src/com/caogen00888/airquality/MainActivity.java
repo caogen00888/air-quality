@@ -1,10 +1,6 @@
 package com.caogen00888.airquality;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
 
 import org.json.JSONException;
 import org.json.JSONTokener;
@@ -28,11 +24,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
     private static final String mStationNamesHttp = "http://www.pm25.in/api/querys/station_names.json";
     private static final String TOKEN_VALUE = "5j1znBVAsnSf5xQyNQyq";
     private static final String TOKEN_KEY = "token";
-
-    private static final String mNo2Http = "http://www.pm25.in/api/querys/pm10.json";
-    private static final String city = "\"北京\"";
-    private static final String station_code = "1005A";
-    private static final String aqi_ranking = "http://www.pm25.in/api/querys/so2.json";
+    private AQDatabaseManager mDataManager = null;
     private TextView mMsg;
 
     @Override
@@ -41,6 +33,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         setContentView(R.layout.activity_main);
         ((Button)findViewById(R.id.btn_refresh)).setOnClickListener(this);
         mMsg = (TextView)findViewById(R.id.tv_msg);
+        mDataManager = AQDatabaseManager.getInstance(this.getApplicationContext());
     }
 
 
@@ -62,20 +55,6 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         }
         return super.onOptionsItemSelected(item);
     }
-    
-    private void parseTimePoint() {
-        String timepoint = "2015-12-07T14:00:00Z";
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-        sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
-        try {
-            Date d = sdf.parse(timepoint);
-            System.out.println(d.getTime() + "\n");
-            System.out.println("" + System.currentTimeMillis());
-            Date nd = new Date(1);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-    }
 
 
     @Override
@@ -89,12 +68,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
                     Log.d(TAG,"Msg:" + result);
                     JSONTokener token = new JSONTokener(result);
                     Log.d(TAG, "======================================");
-                    try {
-                        Log.d(TAG, "" + new ParseCityType().parseData(token.nextValue()));
-                    } catch (JSONException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
+                    mDataManager.parseAQJSON("", result);
                     Log.d(TAG, "======================================");
                     mMsg.setText(result);
                     super.onPostExecute(result);
@@ -105,14 +79,14 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
                     String url = params[0];
                     HttpConnectHelper helper = new HttpConnectHelper(MainActivity.this);
                     try {
-                        return helper.getDataFromUrl(url);
+                        return helper.getFakeData(url);
                     } catch (IOException e) {
                         Log.e(TAG, "Error occured during get data from url:" + url);
                     }
                     return null;
                 }
                 
-            }.execute(aqi_ranking + "?" + TOKEN_KEY + "=" + TOKEN_VALUE + "&city=" + city);
+            }.execute(mStationNamesHttp + "?" + TOKEN_KEY + "=" + TOKEN_VALUE);
         }
     }
 }

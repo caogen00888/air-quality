@@ -44,61 +44,6 @@ quality     空气质量指数类别，有“优、良、轻度污染、中度�
 time_point  数据发布的时间
 */
 public class AQDataType {
-    public static class AQDataTypeDic {
-        public static String COLUMN_NAME_AQI = "Aqi";
-        public static String COLUMN_NAME_AREA = "area";
-        public static String COLUMN_NAME_POSITION_NAME = "position_name";
-        public static String COLUMN_NAME_STATION_CODE = "station_code";
-        public static String COLUMN_NAME_SO2 = "so2";
-        public static String COLUMN_NAME_SO2_24H = "so2_24h";
-        public static String COLUMN_NAME_NO2 = "no2";
-        public static String COLUMN_NAME_NO2_24H = "no2_24h";
-        public static String COLUMN_NAME_PM10 = "pm10";
-        public static String COLUMN_NAME_PM10_24H = "pm10_24h";
-        public static String COLUMN_NAME_CO = "co";
-        public static String COLUMN_NAME_CO_24H = "co_24h";
-        public static String COLUMN_NAME_O3 = "o3";
-        public static String COLUMN_NAME_O3_24H = "o3_24h";
-        public static String COLUMN_NAME_O3_8H = "o3_8h";
-        public static String COLUMN_NAME_O3_8H_24H = "o3_8h_24h";
-        public static String COLUMN_NAME_PM2_5 = "pm2_5";
-        public static String COLUMN_NAME_PM2_5_24H = "pm2_5_24h";
-        public static String COLUMN_NAME_PRIMARY_POLLUTANT = "primary_pollutant";
-        public static String COLUMN_NAME_QUALITY = "quality";
-        public static String COLUMN_NAME_TIME_POINT = "time_point";
-        private static final String[] parseKeys = new String[] {COLUMN_NAME_AQI,COLUMN_NAME_SO2,COLUMN_NAME_SO2_24H,COLUMN_NAME_NO2,COLUMN_NAME_NO2_24H,COLUMN_NAME_PM10,COLUMN_NAME_PM10_24H,COLUMN_NAME_CO,COLUMN_NAME_CO_24H,COLUMN_NAME_O3,COLUMN_NAME_O3_24H,COLUMN_NAME_O3_8H,COLUMN_NAME_O3_8H_24H,COLUMN_NAME_PM2_5,COLUMN_NAME_PM2_5_24H,COLUMN_NAME_PRIMARY_POLLUTANT,COLUMN_NAME_QUALITY,COLUMN_NAME_TIME_POINT};
-        Map<String, Class<?>> dics = new HashMap<String, Class<?>> ();
-        public AQDataTypeDic() {
-            dics.clear();
-            dics.put("aqi",Integer.class);
-            dics.put("area",String.class);
-            dics.put("position_name",String.class);
-            dics.put("station_code",String.class);
-            dics.put("so2",Integer.class);
-            dics.put("so2_24h",Integer.class);
-            dics.put("no2",Integer.class);
-            dics.put("no2_24h",Integer.class);
-            dics.put("pm10",Integer.class);
-            dics.put("pm10_24h",Integer.class);
-            dics.put("co",Integer.class);
-            dics.put("co_24h",Integer.class);
-            dics.put("o3",Integer.class);
-            dics.put("o3_24h",Integer.class);
-            dics.put("o3_8h",Integer.class);
-            dics.put("o3_8h_24h",Integer.class);
-            dics.put("pm2_5",Integer.class);
-            dics.put("pm2_5_24h",Integer.class);
-            dics.put("primary_pollutant",String.class);
-            dics.put("quality",String.class);
-            dics.put("time_point",Long.class);
-            dics.put("station_name",String.class);
-            dics.put("station_code",String.class);
-            dics.put("city",String.class);
-            dics.put("stations", new ArrayList<AQStationType>().getClass());
-            dics.put("http://www.pm25.in/api/querys/station_names.json", new ArrayList<AQCityType>().getClass());
-        }
-    }
-
     public static class AQData {
         public String so2;    //二氧化硫1小时平均
         public String so2_24h;    //二氧化硫24小时滑动平均
